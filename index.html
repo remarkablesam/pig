@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elite Livestock Marketplace</title>
     <meta name="description" content="Buy premium pigs and livestock in Ebonyi State. Trusted, healthy, and well-bred animals for your farm.">
-    <meta name="theme-color" content="#fbbf24">
+    <meta name="theme-color" content="#000000">
     <link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f416.svg">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,26 +14,24 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #fbbf24 100%);
-            color: #333;
+            background: #000000;
+            color: #ffffff;
         }
         .card-hover-effect {
             transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
         }
         .card-hover-effect:hover {
             transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(251,191,36,0.18), 0 2px 8px rgba(0,0,0,0.07);
+            box-shadow: 0 20px 40px rgba(255,255,255,0.1), 0 2px 8px rgba(0,0,0,0.3);
         }
         .btn-animate {
             transition: background 0.3s, color 0.3s, transform 0.2s;
         }
         .btn-animate:hover {
             transform: translateY(-2px) scale(1.04);
-            background: linear-gradient(90deg, #fbbf24 60%, #fde68a 100%);
-            color: #222;
         }
         .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 999;
         }
         .modal-content {
@@ -41,70 +39,122 @@
             max-height: 90%;
             overflow-y: auto;
             z-index: 1000;
+            background: #1a1a1a;
+            color: #ffffff;
         }
         /* Section backgrounds */
         .section-gradient {
-            background: linear-gradient(120deg, #fffbe6 0%, #fbbf24 100%);
+            background: linear-gradient(120deg, #1a1a1a 0%, #2d2d2d 100%);
         }
         .section-dark {
-            background: linear-gradient(120deg, #1a202c 0%, #4b5563 100%);
+            background: linear-gradient(120deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+        /* Welcome splash animations */
+        @keyframes fade-in-up {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes scale-in {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes float-up {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .animate-fade-in-up {
+            animation: fade-in-up 0.8s ease-out forwards;
+        }
+        .animate-scale-in {
+            animation: scale-in 0.6s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+        .animate-float-up {
+            animation: float-up 0.6s ease-out 0.5s forwards;
+            opacity: 0;
         }
     </style>
 </head>
 <body class="antialiased">
         <!-- Enhanced Welcome Splash Page -->
-        <div id="welcome-splash" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-green-900 via-lime-700 to-emerald-400 transition-opacity duration-700">
-            <div class="backdrop-blur-xl bg-white/20 border border-white/30 rounded-3xl shadow-2xl px-10 py-12 max-w-lg w-full text-center animate-fade-in">
-                <div class="flex flex-col items-center">
-                    <span class="relative inline-block mb-6">
-                        <svg class="w-24 h-24 text-lime-200 animate-pig-wiggle" fill="currentColor" viewBox="0 0 24 24">
-                            <circle cx="12" cy="12" r="10" fill="#bef264"/>
-                            <text x="12" y="17" text-anchor="middle" font-size="13" fill="#166534" font-family="Arial" font-weight="bold">🐖</text>
+        <div id="welcome-splash" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black transition-opacity duration-700 overflow-y-auto">
+            <div class="w-full max-w-md mx-auto p-4 flex flex-col items-center justify-center min-h-screen">
+                <!-- Pig illustration -->
+                <div class="relative mb-6 animate-scale-in">
+                    <div class="w-32 h-32 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center shadow-lg">
+                        <svg class="w-20 h-20 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" fill="#4b5563"/>
+                            <text x="12" y="17" text-anchor="middle" font-size="14" fill="#f3f4f6" font-family="Arial" font-weight="bold">🐖</text>
                         </svg>
-                        <span class="absolute -top-2 -right-2 bg-emerald-400 text-white text-xs px-2 py-1 rounded-full shadow animate-bounce">Hi!</span>
-                    </span>
-                    <h1 class="text-4xl md:text-5xl font-extrabold mb-3 text-green-900 drop-shadow-xl">Welcome!</h1>
-                    <p class="text-lg md:text-xl mb-6 text-green-900/80">Step into the world of <span class="font-bold text-lime-700">Elite Livestock</span>.<br>Discover healthy pigs, ethical farming, and seamless buying.</p>
-                    <button id="continue-btn" class="mt-2 px-8 py-3 bg-gradient-to-r from-lime-400 to-emerald-400 text-green-900 font-bold rounded-full text-lg shadow-lg hover:scale-105 transition">Continue</button>
+                    </div>
+                    <div class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full shadow-lg animate-bounce">Welcome!</div>
                 </div>
-            </div>
-            <style>
-                @keyframes pig-wiggle {
-                    0%, 100% { transform: rotate(-8deg) scale(1.05); }
-                    50% { transform: rotate(8deg) scale(1.15); }
-                }
-                .animate-pig-wiggle { animation: pig-wiggle 1.2s infinite alternate; }
-                @keyframes fade-in {
-                    from { opacity: 0; transform: translateY(30px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .animate-fade-in { animation: fade-in 0.8s cubic-bezier(.4,2,.6,1) both; }
-            </style>
-        </div>
-    <div class="min-h-screen flex flex-col">
-        <!-- Header Section - Elegant and Professional -->
-        <header class="bg-neutral-900 text-white shadow-xl py-5 px-6 rounded-b-xl sticky top-0 z-50">
-            <nav class="container mx-auto flex items-center justify-between flex-wrap py-2">
-                <div class="flex items-center flex-shrink-0 text-lime-300 mr-6">
-                    <svg class="w-10 h-10 mr-2" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#bef264"/><text x="12" y="17" text-anchor="middle" font-size="13" fill="#166534" font-family="Arial" font-weight="bold">🐖</text></svg>
-                    <span class="font-extrabold text-2xl tracking-tight text-white">Elite Livestock</span>
-                </div>
-                <div class="block lg:hidden">
-                    <button id="nav-toggle" class="flex items-center px-3 py-2 border rounded text-lime-300 border-lime-300 hover:text-white hover:border-white focus:outline-none">
-                        <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                
+                <!-- Content -->
+                <div class="text-center animate-fade-in-up">
+                    <h1 class="text-2xl font-extrabold mb-2 text-white">Elite Livestock</h1>
+                    <h2 class="text-lg font-semibold mb-3 text-gray-300">Premium Livestock Marketplace</h2>
+                    <p class="text-sm mb-4 text-gray-400 leading-relaxed">
+                        Discover healthy, ethically-raised pigs from trusted farmers in Ebonyi State. Quality guaranteed, nationwide delivery available.
+                    </p>
+                    
+                    <!-- Feature list -->
+                    <div class="space-y-2 mb-4 animate-float-up">
+                        <div class="flex items-center justify-center">
+                            <div class="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center mr-2">
+                                <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300 text-xs">Certified Healthy Animals</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center mr-2">
+                                <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300 text-xs">Ethical Breeding Practices</span>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-6 h-6 bg-gray-800 rounded-full flex items-center justify-center mr-2">
+                                <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-300 text-xs">Nationwide Delivery</span>
+                        </div>
+                    </div>
+                    
+                    <button id="continue-btn" class="px-5 py-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-full text-sm shadow hover:scale-105 transition animate-float-up">
+                        Enter Marketplace
                     </button>
                 </div>
-                <div id="nav-menu" class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-4 lg:mt-0 bg-neutral-900 lg:bg-transparent rounded-lg lg:rounded-none shadow-lg lg:shadow-none">
-                    <ul class="lg:flex-grow flex flex-col lg:flex-row items-center lg:space-x-8 text-lg">
-                        <li class="my-2 lg:my-0"><a href="#home" class="block px-4 py-2 rounded hover:bg-lime-200 hover:text-green-900 transition nav-link">Home</a></li>
-                        <li class="my-2 lg:my-0"><a href="#our-promise" class="block px-4 py-2 rounded hover:bg-lime-200 hover:text-green-900 transition nav-link">Our Promise</a></li>
-                        <li class="my-2 lg:my-0"><a href="#listings" class="block px-4 py-2 rounded hover:bg-lime-200 hover:text-green-900 transition nav-link">Listings</a></li>
-                        <li class="my-2 lg:my-0"><a href="#contact" class="block px-4 py-2 rounded hover:bg-lime-200 hover:text-green-900 transition nav-link">Contact</a></li>
+            </div>
+        </div>
+    <div class="min-h-screen flex flex-col">
+        <!-- Header Section - Premium Black -->
+        <header class="bg-black text-white shadow-lg py-3 px-4 rounded-b-xl sticky top-0 z-50 border-b border-gray-800">
+            <nav class="container mx-auto flex items-center justify-between flex-wrap py-1">
+                <div class="flex items-center flex-shrink-0 text-gray-300 mr-4">
+                    <svg class="w-8 h-8 mr-2" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#4b5563"/><text x="12" y="17" text-anchor="middle" font-size="10" fill="#f3f4f6" font-family="Arial" font-weight="bold">🐖</text></svg>
+                    <span class="font-extrabold text-lg tracking-tight text-white">Elite Livestock</span>
+                </div>
+                <div class="block lg:hidden">
+                    <button id="nav-toggle" class="flex items-center px-2 py-1 border rounded text-gray-300 border-gray-700 hover:text-white hover:border-gray-500 focus:outline-none">
+                        <svg class="fill-current h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                    </button>
+                </div>
+                <div id="nav-menu" class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-gray-900 lg:bg-transparent rounded-lg lg:rounded-none shadow-lg lg:shadow-none border border-gray-800 lg:border-0">
+                    <ul class="lg:flex-grow flex flex-col lg:flex-row items-center lg:space-x-6 text-base">
+                        <li class="my-1 lg:my-0"><a href="#home" class="block px-3 py-1 rounded text-sm hover:bg-gray-800 hover:text-white transition nav-link">Home</a></li>
+                        <li class="my-1 lg:my-0"><a href="#our-promise" class="block px-3 py-1 rounded text-sm hover:bg-gray-800 hover:text-white transition nav-link">Our Promise</a></li>
+                        <li class="my-1 lg:my-0"><a href="#listings" class="block px-3 py-1 rounded text-sm hover:bg-gray-800 hover:text-white transition nav-link">Listings</a></li>
+                        <li class="my-1 lg:my-0"><a href="#contact" class="block px-3 py-1 rounded text-sm hover:bg-gray-800 hover:text-white transition nav-link">Contact</a></li>
                     </ul>
                 </div>
             </nav>
         </header>
-
         <script>
         // Responsive nav menu toggle
         document.addEventListener('DOMContentLoaded', function() {
@@ -117,235 +167,223 @@
             }
         });
         </script>
-
-        <!-- Hero Section - Grand and Inviting -->
-    <section id="home" class="relative bg-gradient-to-br from-green-900/90 via-lime-700/80 to-emerald-500/70 h-96 md:h-128 flex items-center justify-center text-white shadow-inner">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-900/90 via-lime-700/80 to-emerald-500/70"></div>
-            <div class="relative z-10 text-center px-6 py-14 max-w-3xl flex flex-col items-center justify-center w-full">
-                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-5 text-lime-200 drop-shadow-xl">Your Trusted Source for Healthy Pigs</h1>
-                <p class="text-xl md:text-2xl font-medium mb-7 text-lime-100 drop-shadow">Farm-to-Table Quality • Ethical Breeding • Nationwide Delivery</p>
-                <a href="#listings" class="inline-block bg-gradient-to-r from-emerald-400 via-lime-300 to-yellow-200 text-green-900 py-4 px-10 rounded-full text-2xl font-bold uppercase tracking-wide shadow-xl btn-animate hover:scale-105 hover:from-lime-400 hover:to-emerald-300">
+        <!-- Hero Section - Premium Black -->
+    <section id="home" class="relative bg-gradient-to-br from-black via-gray-900 to-black h-64 md:h-96 flex items-center justify-center text-white shadow-inner">
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+            <div class="relative z-10 text-center px-4 py-8 max-w-2xl flex flex-col items-center justify-center w-full">
+                <h1 class="text-2xl md:text-4xl font-extrabold leading-tight mb-3 text-white drop-shadow-lg">Your Trusted Source for Healthy Pigs</h1>
+                <p class="text-sm md:text-lg font-medium mb-4 text-gray-300">Farm-to-Table Quality • Ethical Breeding • Nationwide Delivery</p>
+                <a href="#listings" class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white py-2 px-6 rounded-full text-base md:text-xl font-bold uppercase tracking-wide shadow-lg btn-animate hover:scale-105 hover:from-pink-600 hover:to-rose-600">
                     Shop Live Pigs Now
                 </a>
             </div>
         </section>
-
         <!-- Main Content Section - Refined Listings -->
-        <main class="flex-grow container mx-auto p-4 sm:p-8 lg:p-12">
-            <h3 id="listings" class="text-center text-5xl font-extrabold text-neutral-800 mb-12 mt-8">Curated Selections in Ebonyi State</h3>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <main class="flex-grow container mx-auto p-2 sm:p-4 md:p-8">
+            <h3 id="listings" class="text-center text-2xl md:text-4xl font-extrabold text-white mb-6 md:mb-8 mt-4">Curated Selections in Ebonyi State</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 <!-- Pig Listing 1 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover-effect">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Prime Breeding Stock" class="w-full h-56 object-cover object-center cursor-pointer pig-image"
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden card-hover-effect border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Prime Breeding Stock" class="w-full h-40 object-cover object-center cursor-pointer pig-image"
                          data-front="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
                          data-side="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80"
                          data-down="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
                          data-name="Superior Large White">
-                    <div class="p-7">
-                        <h4 class="text-3xl font-bold text-neutral-900 mb-3">Superior Large White</h4>
-                        <p class="text-neutral-700 text-xl mb-4">Price: <span class="font-bold text-amber-600">₦150,000</span></p>
-                        <p class="text-neutral-600 text-lg mb-5">Location: Ebonyi State</p>
+                    <div class="p-4">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2">Superior Large White</h4>
+                        <p class="text-gray-300 text-base md:text-lg mb-2">Price: <span class="font-bold text-pink-400">₦150,000</span></p>
+                        <p class="text-gray-400 text-sm md:text-base mb-3">Location: Ebonyi State</p>
                         <a href="https://wa.me/2347061847255?text=Inquiry%3A%20Superior%20Large%20White%20(Ebonyi%20State)%20-%20Elite%20Livestock"
                            target="_blank"
-                           class="block w-full bg-gradient-to-r from-neutral-800 to-amber-500 text-white text-center py-4 px-5 rounded-xl font-semibold text-lg btn-animate">
+                           class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-center py-2 px-3 rounded-lg font-semibold text-sm md:text-base btn-animate hover:from-pink-600 hover:to-rose-600">
                             Contact Seller
                         </a>
                     </div>
                 </div>
-
                 <!-- Pig Listing 2 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover-effect">
-                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Robust Duroc Piglet" class="w-full h-56 object-cover object-center cursor-pointer pig-image"
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden card-hover-effect border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Robust Duroc Piglet" class="w-full h-40 object-cover object-center cursor-pointer pig-image"
                          data-front="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
                          data-side="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
                          data-down="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80"
                          data-name="Robust Duroc Piglet">
-                    <div class="p-7">
-                        <h4 class="text-3xl font-bold text-neutral-900 mb-3">Robust Duroc Piglet</h4>
-                        <p class="text-neutral-700 text-xl mb-4">Price: <span class="font-bold text-amber-600">₦75,000</span></p>
-                        <p class="text-neutral-600 text-lg mb-5">Location: Ebonyi State</p>
+                    <div class="p-4">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2">Robust Duroc Piglet</h4>
+                        <p class="text-gray-300 text-base md:text-lg mb-2">Price: <span class="font-bold text-pink-400">₦75,000</span></p>
+                        <p class="text-gray-400 text-sm md:text-base mb-3">Location: Ebonyi State</p>
                         <a href="https://wa.me/2347061847255?text=Inquiry%3A%20Robust%20Duroc%20Piglet%20(Ebonyi%20State)%20-%20Elite%20Livestock"
                            target="_blank"
-                           class="block w-full bg-gradient-to-r from-neutral-800 to-amber-500 text-white text-center py-4 px-5 rounded-xl font-semibold text-lg btn-animate">
+                           class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-center py-2 px-3 rounded-lg font-semibold text-sm md:text-base btn-animate hover:from-pink-600 hover:to-rose-600">
                             Contact Seller
                         </a>
                     </div>
                 </div>
-
                 <!-- Pig Listing 3 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover-effect">
-                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80" alt="Exceptional Breeding Boar" class="w-full h-56 object-cover object-center cursor-pointer pig-image"
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden card-hover-effect border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80" alt="Exceptional Breeding Boar" class="w-full h-40 object-cover object-center cursor-pointer pig-image"
                          data-front="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80"
                          data-side="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
                          data-down="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
                          data-name="Exceptional Breeding Boar">
-                    <div class="p-7">
-                        <h4 class="text-3xl font-bold text-neutral-900 mb-3">Exceptional Breeding Boar</h4>
-                        <p class="text-neutral-700 text-xl mb-4">Price: <span class="font-bold text-amber-600">₦250,000</span></p>
-                        <p class="text-neutral-600 text-lg mb-5">Location: Ebonyi State</p>
+                    <div class="p-4">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2">Exceptional Breeding Boar</h4>
+                        <p class="text-gray-300 text-base md:text-lg mb-2">Price: <span class="font-bold text-pink-400">₦250,000</span></p>
+                        <p class="text-gray-400 text-sm md:text-base mb-3">Location: Ebonyi State</p>
                         <a href="https://wa.me/2347061847255?text=Inquiry%3A%20Exceptional%20Breeding%20Boar%20(Ebonyi%20State)%20-%20Elite%20Livestock"
                            target="_blank"
-                           class="block w-full bg-gradient-to-r from-neutral-800 to-amber-500 text-white text-center py-4 px-5 rounded-xl font-semibold text-lg btn-animate">
+                           class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-center py-2 px-3 rounded-lg font-semibold text-sm md:text-base btn-animate hover:from-pink-600 hover:to-rose-600">
                             Contact Seller
                         </a>
                     </div>
                 </div>
-
                 <!-- Pig Listing 4 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover-effect">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Productive Gilt" class="w-full h-56 object-cover object-center cursor-pointer pig-image"
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden card-hover-effect border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Productive Gilt" class="w-full h-40 object-cover object-center cursor-pointer pig-image"
                          data-front="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
                          data-side="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80"
                          data-down="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
                          data-name="Productive Pregnant Gilt">
-                    <div class="p-7">
-                        <h4 class="text-3xl font-bold text-neutral-900 mb-3">Productive Pregnant Gilt</h4>
-                        <p class="text-neutral-700 text-xl mb-4">Price: <span class="font-bold text-amber-600">₦200,000</span></p>
-                        <p class="text-neutral-600 text-lg mb-5">Location: Ebonyi State</p>
+                    <div class="p-4">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2">Productive Pregnant Gilt</h4>
+                        <p class="text-gray-300 text-base md:text-lg mb-2">Price: <span class="font-bold text-pink-400">₦200,000</span></p>
+                        <p class="text-gray-400 text-sm md:text-base mb-3">Location: Ebonyi State</p>
                         <a href="https://wa.me/2347061847255?text=Inquiry%3A%20Productive%20Pregnant%20Gilt%20(Ebonyi%20State)%20-%20Elite%20Livestock"
                            target="_blank"
-                           class="block w-full bg-gradient-to-r from-neutral-800 to-amber-500 text-white text-center py-4 px-5 rounded-xl font-semibold text-lg btn-animate">
+                           class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-center py-2 px-3 rounded-lg font-semibold text-sm md:text-base btn-animate hover:from-pink-600 hover:to-rose-600">
                             Contact Seller
                         </a>
                     </div>
                 </div>
-
                 <!-- Pig Listing 5 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover-effect">
-                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Healthy Weaner Group" class="w-full h-56 object-cover object-center cursor-pointer pig-image"
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden card-hover-effect border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Healthy Weaner Group" class="w-full h-40 object-cover object-center cursor-pointer pig-image"
                          data-front="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
                          data-side="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
                          data-down="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80"
                          data-name="Premium Weaner Group">
-                    <div class="p-7">
-                        <h4 class="text-3xl font-bold text-neutral-900 mb-3">Premium Weaner Group (5)</h4>
-                        <p class="text-neutral-700 text-xl mb-4">Price: <span class="font-bold text-amber-600">₦180,000</span></p>
-                        <p class="text-neutral-600 text-lg mb-5">Location: Ebonyi State</p>
+                    <div class="p-4">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2">Premium Weaner Group (5)</h4>
+                        <p class="text-gray-300 text-base md:text-lg mb-2">Price: <span class="font-bold text-pink-400">₦180,000</span></p>
+                        <p class="text-gray-400 text-sm md:text-base mb-3">Location: Ebonyi State</p>
                         <a href="https://wa.me/2347061847255?text=Inquiry%3A%20Premium%20Weaner%20Group%20(Ebonyi%20State)%20-%20Elite%20Livestock"
                            target="_blank"
-                           class="block w-full bg-gradient-to-r from-neutral-800 to-amber-500 text-white text-center py-4 px-5 rounded-xl font-semibold text-lg btn-animate">
+                           class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-center py-2 px-3 rounded-lg font-semibold text-sm md:text-base btn-animate hover:from-pink-600 hover:to-rose-600">
                             Contact Seller
                         </a>
                     </div>
                 </div>
-
                 <!-- Pig Listing 6 -->
-                <div class="bg-white rounded-2xl shadow-xl overflow-hidden card-hover-effect">
-                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80" alt="Market-Ready Finisher" class="w-full h-56 object-cover object-center cursor-pointer pig-image"
+                <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden card-hover-effect border border-gray-800">
+                    <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80" alt="Market-Ready Finisher" class="w-full h-40 object-cover object-center cursor-pointer pig-image"
                          data-front="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=80"
                          data-side="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80"
                          data-down="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
                          data-name="Market-Ready Finisher">
-                    <div class="p-7">
-                        <h4 class="text-3xl font-bold text-neutral-900 mb-3">Market-Ready Finisher</h4>
-                        <p class="text-neutral-700 text-xl mb-4">Price: <span class="font-bold text-amber-600">₦120,000</span></p>
-                        <p class="text-neutral-600 text-lg mb-5">Location: Ebonyi State</p>
+                    <div class="p-4">
+                        <h4 class="text-xl md:text-2xl font-bold text-white mb-2">Market-Ready Finisher</h4>
+                        <p class="text-gray-300 text-base md:text-lg mb-2">Price: <span class="font-bold text-pink-400">₦120,000</span></p>
+                        <p class="text-gray-400 text-sm md:text-base mb-3">Location: Ebonyi State</p>
                         <a href="https://wa.me/2347061847255?text=Inquiry%3A%20Market-Ready%20Finisher%20(Ebonyi%20State)%20-%20Elite%20Livestock"
                            target="_blank"
-                           class="block w-full bg-gradient-to-r from-neutral-800 to-amber-500 text-white text-center py-4 px-5 rounded-xl font-semibold text-lg btn-animate">
+                           class="block w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white text-center py-2 px-3 rounded-lg font-semibold text-sm md:text-base btn-animate hover:from-pink-600 hover:to-rose-600">
                             Contact Seller
                         </a>
                     </div>
                 </div>
             </div>
         </main>
-
         <!-- Quality Promise Section -->
-    <section id="our-promise" class="section-dark text-white py-16 px-6 mt-12">
+    <section id="our-promise" class="section-dark text-white py-8 md:py-12 px-4 mt-8 border-t border-gray-800">
             <div class="container mx-auto text-center">
-                <h3 class="text-4xl font-extrabold mb-8 text-amber-400">Our Commitment to Excellence</h3>
-                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10">
+                <h3 class="text-2xl md:text-3xl font-extrabold mb-4 md:mb-6 text-pink-400">Our Commitment to Excellence</h3>
+                <p class="text-sm md:text-lg max-w-2xl mx-auto mb-6 text-gray-300">
                     At Elite Livestock, we are dedicated to providing only the highest quality animals, ensuring health, genetic purity, and optimal performance for your farm or business.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-                    <div class="p-6 bg-neutral-700 rounded-lg shadow-lg">
-                        <h5 class="text-2xl font-bold mb-3 text-amber-300">Rigorous Selection</h5>
-                        <p class="text-base text-neutral-200">Every animal listed undergoes a stringent selection process to meet our high standards.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-left">
+                    <div class="p-4 bg-gray-800 rounded-lg shadow-sm border border-gray-700">
+                        <h5 class="text-lg md:text-xl font-bold mb-2 text-white">Rigorous Selection</h5>
+                        <p class="text-xs md:text-sm text-gray-400">Every animal listed undergoes a stringent selection process to meet our high standards.</p>
                     </div>
-                    <div class="p-6 bg-neutral-700 rounded-lg shadow-lg">
-                        <h5 class="text-2xl font-bold mb-3 text-amber-300">Health & Welfare</h5>
-                        <p class="text-base text-neutral-200">We prioritize the health and welfare of all livestock, ensuring they are raised in optimal conditions.</p>
+                    <div class="p-4 bg-gray-800 rounded-lg shadow-sm border border-gray-700">
+                        <h5 class="text-lg md:text-xl font-bold mb-2 text-white">Health & Welfare</h5>
+                        <p class="text-xs md:text-sm text-gray-400">We prioritize the health and welfare of all livestock, ensuring they are raised in optimal conditions.</p>
                     </div>
-                    <div class="p-6 bg-neutral-700 rounded-lg shadow-lg">
-                        <h5 class="text-2xl font-bold mb-3 text-amber-300">Transparent Transactions</h5>
-                        <p class="text-base text-neutral-200">Experience seamless and trustworthy transactions with direct seller contact.</p>
+                    <div class="p-4 bg-gray-800 rounded-lg shadow-sm border border-gray-700">
+                        <h5 class="text-lg md:text-xl font-bold mb-2 text-white">Transparent Transactions</h5>
+                        <p class="text-xs md:text-sm text-gray-400">Experience seamless and trustworthy transactions with direct seller contact.</p>
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- Seller Biography Section -->
-    <section id="seller-bio" class="section-gradient py-16 px-6 mt-12 shadow-lg rounded-xl mx-auto container">
-            <div class="container mx-auto text-center md:flex md:items-center md:space-x-12">
-                <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
-                    <img src="https://placehold.co/300x300/A0522D/FFFFFF?text=Seller+Photo" alt="Seller's Photo" class="rounded-full w-48 h-48 object-cover object-center border-4 border-amber-500 shadow-xl">
+    <section id="seller-bio" class="section-gradient py-8 md:py-12 px-4 mt-8 shadow-sm rounded-xl mx-auto container border border-gray-800">
+            <div class="container mx-auto text-center md:flex md:items-center md:space-x-8">
+                <div class="md:w-1/3 flex justify-center mb-4 md:mb-0">
+                    <img src="https://placehold.co/300x300/FFB5A7/FFFFFF?text=Seller+Photo" alt="Seller's Photo" class="rounded-full w-32 h-32 object-cover object-center border-4 border-pink-500 shadow-md">
                 </div>
                 <div class="md:w-2/3 text-center md:text-left">
-                    <h3 class="text-4xl font-extrabold text-neutral-800 mb-6">Meet Our Featured Seller: John Doe</h3>
-                    <p class="text-lg text-neutral-700 leading-relaxed mb-4">
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-4">Meet Our Featured Seller: John Doe</h3>
+                    <p class="text-sm md:text-base text-gray-300 leading-relaxed mb-3">
                         John Doe is a seasoned livestock farmer with over 20 years of experience in breeding and raising premium pigs in Ebonyi State. His dedication to animal welfare, sustainable farming practices, and genetic quality has earned him a reputation as a trusted supplier in the region.
                     </p>
-                    <p class="text-lg text-neutral-700 leading-relaxed">
+                    <p class="text-sm md:text-base text-gray-300 leading-relaxed">
                         John's farm adheres to the highest standards, ensuring that all animals are healthy, well-nourished, and ready to thrive in their new environments. He is committed to fostering long-term relationships with buyers by providing exceptional quality and transparent dealings.
                     </p>
                     <a href="https://wa.me/2347061847255?text=Hello%20John%2C%20I'd%20like%20to%20know%20more%20about%20your%20livestock."
                        target="_blank"
-                       class="inline-block mt-8 bg-amber-500 text-neutral-900 py-3 px-6 rounded-full text-lg font-semibold hover:bg-amber-400 btn-animate shadow-md">
+                       class="inline-block mt-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white py-2 px-4 rounded-full text-sm md:text-base font-semibold btn-animate shadow-md hover:from-pink-600 hover:to-rose-600">
                         Chat with John on WhatsApp
                     </a>
                 </div>
             </div>
         </section>
-
         <!-- Call to Action Section -->
-    <section class="bg-gradient-to-r from-amber-400 to-yellow-200 text-neutral-900 py-16 px-6">
+    <section class="bg-gradient-to-r from-gray-900 to-black text-white py-8 md:py-12 px-4 border-t border-gray-800">
             <div class="container mx-auto text-center">
-                <h3 class="text-4xl font-extrabold mb-6">Ready to Elevate Your Farm?</h3>
-                <p class="text-xl mb-8 max-w-2xl mx-auto">
+                <h3 class="text-2xl md:text-3xl font-extrabold mb-4">Ready to Elevate Your Farm?</h3>
+                <p class="text-sm md:text-lg mb-6 max-w-xl mx-auto text-gray-300">
                     Connect with premium livestock suppliers today and make a smart investment in your agricultural future.
                 </p>
-                <a href="#listings" class="inline-block bg-neutral-900 text-white py-4 px-8 rounded-full text-xl font-bold uppercase tracking-wide shadow-lg hover:bg-neutral-700 btn-animate">
+                <a href="#listings" class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white py-2 px-6 rounded-full text-sm md:text-lg font-bold uppercase tracking-wide shadow-lg btn-animate hover:from-pink-600 hover:to-rose-600">
                     View All Listings
                 </a>
             </div>
         </section>
-
-        <!-- Footer Section - Comprehensive and Refined -->
-        <footer id="contact" class="bg-neutral-900 text-neutral-300 py-10 px-6 rounded-t-xl">
-            <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+        <!-- Footer Section - Premium Black -->
+        <footer id="contact" class="bg-black text-gray-300 py-6 md:py-8 px-4 rounded-t-xl border-t border-gray-800">
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
                 <div>
-                    <h5 class="text-2xl font-bold mb-4 text-white">Elite Livestock</h5>
-                    <p class="text-sm leading-relaxed">
+                    <h5 class="text-lg md:text-xl font-bold mb-2 text-white">Elite Livestock</h5>
+                    <p class="text-xs md:text-sm leading-relaxed text-gray-400">
                         Your trusted partner for sourcing high-quality agricultural assets. Dedicated to excellence and connecting you with the best.
                     </p>
                 </div>
                 <div>
-                    <h5 class="text-2xl font-bold mb-4 text-white">Quick Links</h5>
-                    <ul class="space-y-2">
-                        <li><a href="#home" class="hover:text-amber-400 transition duration-300 nav-link">Home</a></li>
-                        <li><a href="#our-promise" class="hover:text-amber-400 transition duration-300 nav-link">Our Promise</a></li>
-                        <li><a href="#listings" class="hover:text-amber-400 transition duration-300 nav-link">Listings</a></li>
-                        <li><a href="#" class="hover:text-amber-400 transition duration-300">Privacy Policy</a></li>
+                    <h5 class="text-lg md:text-xl font-bold mb-2 text-white">Quick Links</h5>
+                    <ul class="space-y-1">
+                        <li><a href="#home" class="hover:text-pink-400 transition duration-300 nav-link text-xs md:text-sm">Home</a></li>
+                        <li><a href="#our-promise" class="hover:text-pink-400 transition duration-300 nav-link text-xs md:text-sm">Our Promise</a></li>
+                        <li><a href="#listings" class="hover:text-pink-400 transition duration-300 nav-link text-xs md:text-sm">Listings</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition duration-300 text-xs md:text-sm">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="text-2xl font-bold mb-4 text-white">Contact Us</h5>
-                    <p>Ebonyi State</p>
-                    <p>Email: info@elitestock.com (Placeholder)</p>
-                    <p>Phone: +234 706 184 7255</p>
-                    <div class="flex justify-center md:justify-start space-x-4 mt-4">
+                    <h5 class="text-lg md:text-xl font-bold mb-2 text-white">Contact Us</h5>
+                    <p class="text-xs md:text-sm text-gray-400">Ebonyi State</p>
+                    <p class="text-xs md:text-sm text-gray-400">Email: info@elitestock.com (Placeholder)</p>
+                    <p class="text-xs md:text-sm text-gray-400">Phone: +234 706 184 7255</p>
+                    <div class="flex justify-center md:justify-start space-x-3 mt-3">
                         <!-- Placeholder Social Icons -->
-                        <a href="#" class="text-neutral-300 hover:text-amber-400 transition duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
                         </a>
-                        <a href="#" class="text-neutral-300 hover:text-amber-400 transition duration-300">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.418 2.865 8.163 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.867-.015-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.007.07 1.532 1.03 1.532 1.03.893 1.529 2.342 1.087 2.91.831.092-.646.35-1.087.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.09.39-1.984 1.029-2.682-.103-.253-.447-1.27.098-2.659 0 0 .84-.268 2.75 1.025.799-.222 1.65-.333 2.5-.337 2.5 0 3.301.115 4.101.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.389.202 2.406.099 2.659.64.698 1.028 1.592 1.028 2.682 0 3.841-2.339 4.686-4.565 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.742 0 .268.18.579.688.482C19.137 20.165 22 16.419 22 12.001 22 6.479 17.522 2.002 12.001 2.002z" /></svg>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition duration-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.001 2.002c-5.522 0-9.999 4.477-9.999 9.999 0 4.418 2.865 8.163 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.867-.015-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.007.07 1.532 1.03 1.532 1.03.893 1.529 2.342 1.087 2.91.831.092-.646.35-1.087.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.09.39-1.984 1.029-2.682-.103-.253-.447-1.27.098-2.659 0 0 .84-.268 2.75 1.025.799-.222 1.65-.333 2.5-.337 2.5 0 3.301.115 4.101.337 1.909-1.293 2.747-1.025 2.747-1.025.546 1.389.202 2.406.099 2.659.64.698 1.028 1.592 1.028 2.682 0 3.841-2.339 4.686-4.565 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.742 0 .268.18.579.688.482C19.137 20.165 22 16.419 22 12.001 22 6.479 17.522 2.002 12.001 2.002z" /></svg>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-neutral-700 mt-8 pt-6 text-center text-sm">
+            <div class="border-t border-gray-800 mt-6 pt-4 text-center text-xs text-gray-500">
                 <p>&copy; 2025 Elite Livestock. All rights reserved.</p>
             </div>
         </footer>
@@ -364,33 +402,31 @@
             if (btn) {
                 btn.addEventListener('click', hideSplash);
             }
-            // Also auto-hide after 3.5s if user doesn't click
-            setTimeout(hideSplash, 3500);
+            // Also auto-hide after 5s if user doesn't click
+            setTimeout(hideSplash, 5000);
         });
         </script>
-
     <!-- Image Preview Modal -->
     <div id="image-modal" class="fixed inset-0 hidden items-center justify-center modal-overlay">
-        <div class="bg-white rounded-xl p-8 shadow-2xl modal-content relative">
-            <button id="close-modal" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-3xl font-bold">&times;</button>
-            <h4 id="modal-pig-name" class="text-3xl font-bold text-neutral-800 mb-6 text-center"></h4>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-900 rounded-xl p-4 md:p-8 shadow-2xl modal-content relative">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl md:text-3xl font-bold">&times;</button>
+            <h4 id="modal-pig-name" class="text-xl md:text-3xl font-bold text-white mb-4 md:mb-6 text-center"></h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div class="flex flex-col items-center">
                     <img id="modal-front-view" src="" alt="Front View" class="w-full h-auto rounded-lg shadow-md mb-2">
-                    <p class="text-sm text-neutral-600 font-medium">Front View</p>
+                    <p class="text-xs md:text-sm text-gray-400 font-medium">Front View</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <img id="modal-side-view" src="" alt="Side View" class="w-full h-auto rounded-lg shadow-md mb-2">
-                    <p class="text-sm text-neutral-600 font-medium">Side View</p>
+                    <p class="text-xs md:text-sm text-gray-400 font-medium">Side View</p>
                 </div>
                 <div class="flex flex-col items-center">
                     <img id="modal-down-view" src="" alt="Top/Down View" class="w-full h-auto rounded-lg shadow-md mb-2">
-                    <p class="text-sm text-neutral-600 font-medium">Top/Down View</p>
+                    <p class="text-xs md:text-sm text-gray-400 font-medium">Top/Down View</p>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Smooth scrolling for navigation links
@@ -407,7 +443,6 @@
                     }
                 });
             });
-
             // Image Preview Modal Functionality
             const imageModal = document.getElementById('image-modal');
             const closeModalBtn = document.getElementById('close-modal');
@@ -415,7 +450,6 @@
             const modalSideView = document.getElementById('modal-side-view');
             const modalDownView = document.getElementById('modal-down-view');
             const modalPigName = document.getElementById('modal-pig-name');
-
             document.querySelectorAll('.pig-image').forEach(image => {
                 image.addEventListener('click', function() {
                     modalFrontView.src = this.dataset.front;
@@ -426,12 +460,10 @@
                     imageModal.classList.add('flex'); // Use flex to center
                 });
             });
-
             closeModalBtn.addEventListener('click', () => {
                 imageModal.classList.add('hidden');
                 imageModal.classList.remove('flex');
             });
-
             // Close modal when clicking outside the content
             imageModal.addEventListener('click', (e) => {
                 if (e.target === imageModal) {
